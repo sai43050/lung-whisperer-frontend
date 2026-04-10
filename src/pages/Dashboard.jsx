@@ -32,24 +32,27 @@ function Dashboard() {
 
   return (
     <div className="center-container">
-      <h1>Lung Analysis Dashboard 🫁</h1>
+      <div className="glass-panel">
+        <span className="university-tag">Vignan's Institute of Information Technology</span>
+        <h1 className="title" style={{ fontSize: '2.5rem' }}>Lung Analysis Dashboard 🫁</h1>
 
-      <input
-        type="file"
-        accept=".wav"
-        onChange={(e) => setFile(e.target.files[0])}
-      />
+        <input
+          type="file"
+          accept=".wav"
+          onChange={(e) => setFile(e.target.files[0])}
+        />
 
-      <button className="primary-btn" onClick={handleUpload}>
-        {loading ? "Analyzing..." : "Upload & Predict"}
-      </button>
+        <button className="primary-btn" onClick={handleUpload}>
+          {loading ? "Analyzing..." : "Upload & Predict"}
+        </button>
 
-      {result && (
-        <div className="result-box">
-          <h2>{result.prediction}</h2>
-          <p>{result.confidence}% Confidence</p>
-        </div>
-      )}
+        {result && (
+          <div className="result-box">
+            <h2>{result.prediction}</h2>
+            <p>{result.confidence}% Confidence</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

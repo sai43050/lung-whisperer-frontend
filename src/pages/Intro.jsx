@@ -6,14 +6,17 @@ function Intro() {
 
   return (
     <div className="center-container">
-      <h1 className="title">Lung Whisperer 🫁</h1>
-      <p className="subtitle">
-        AI-powered respiratory sound analysis for early disease detection.
-      </p>
+      <div className="glass-panel">
+        <span className="university-tag">Vignan's Institute of Information Technology</span>
+        <h1 className="title">Lung Whisperer 🫁</h1>
+        <p className="subtitle">
+          AI-powered respiratory sound analysis for early disease detection.
+        </p>
 
-      <button className="primary-btn" onClick={() => navigate("/login")}>
-        Get Started
-      </button>
+        <button className="primary-btn" onClick={() => navigate("/login")}>
+          Get Started
+        </button>
+      </div>
     </div>
   );
 }

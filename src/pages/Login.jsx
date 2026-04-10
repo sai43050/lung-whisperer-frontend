@@ -17,23 +17,26 @@ function Login() {
 
   return (
     <div className="center-container">
-      <h2>Login</h2>
+      <div className="glass-panel">
+        <span className="university-tag">Vignan's Institute of Information Technology</span>
+        <h2 className="title">Secure Login</h2>
 
-      <input
-        type="email"
-        placeholder="Email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
+        <input
+          type="email"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <button className="primary-btn" onClick={handleLogin}>
-        Login
-      </button>
+        <button className="primary-btn" onClick={handleLogin}>
+          Login
+        </button>
+      </div>
     </div>
   );
 }
