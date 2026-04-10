@@ -74,6 +74,12 @@ body {
   background: transparent;
   width: 100%;
   text-align: left;
+  position: relative;
+  z-index: 100;
+}
+
+.nav-item * {
+  pointer-events: none;
 }
 
 .nav-item:hover {

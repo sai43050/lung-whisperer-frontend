@@ -122,8 +122,9 @@ function XRayModule() {
     setLoading(true);
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("user_id", "1"); // Mocking user_id for now as per production schema
     try {
-      const res = await axios.post(`${API_BASE}/predict-xray/`, formData);
+      const res = await axios.post(`${API_BASE}/api/predict`, formData);
       setResult(res.data);
     } catch (err) {
       alert("Error connecting to AI Backend");
@@ -164,12 +165,18 @@ function XRayModule() {
               {result.confidence}% Confidence
             </div>
           </div>
+          {result.gradcam && (
+            <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+              <img src={result.gradcam} alt="Heatmap" style={{ maxWidth: '100%', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }} />
+              <p style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.5rem' }}>AI Attention Heatmap (Grad-CAM)</p>
+            </div>
+          )}
           <div style={{ marginTop: '1.5rem' }}>
             <h4 style={{ color: '#94a3b8', textTransform: 'uppercase', fontSize: '0.8rem' }}>Findings</h4>
             {result.findings?.map((f, i) => (
               <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.8rem 0', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                <span>{f.label}</span>
-                <span style={{ color: f.status === 'Normal' ? '#10b981' : '#fbbf24' }}>{f.status}</span>
+                <span>{f}</span>
+                <span style={{ color: '#fbbf24' }}>Detected</span>
               </div>
             ))}
           </div>
@@ -190,8 +197,9 @@ function CoughModule() {
     setLoading(true);
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("user_id", "1");
     try {
-      const res = await axios.post(`${API_BASE}/predict/`, formData);
+      const res = await axios.post(`${API_BASE}/api/predict/audio`, formData);
       setResult(res.data);
     } catch (err) {
       alert("Error connecting to server");
@@ -240,7 +248,7 @@ function AssistantModule() {
     setLoading(true);
     
     try {
-      const res = await axios.post(`${API_BASE}/chat/`, { messages: newMessages });
+      const res = await axios.post(`${API_BASE}/api/chat-proxy`, { messages: newMessages });
       setMessages([...newMessages, { role: 'bot', content: res.data.reply }]);
     } catch (err) {
       setMessages([...newMessages, { role: 'bot', content: "Sorry, I am having trouble connecting to the brain." }]);
